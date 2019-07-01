@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>GIF Generator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+	<h1>GIF Generator</h1>
+	<div id="status"></div>
+
+	<h2>Current GIF</h2>
+	<img src="animation.gif" id="animation"><br>
+	<button onclick="generateGif()">Generate New GIF</button>
+
+	<h2>GIF Settings</h2>
+
+	<h3>Image Preview</h3>
+	<input id="imgInput" type="text">
+	<button onclick="showImage()">Show Preview</button><br>
+	<img id="img"> <!-- The "src" attribute is added with JavaScript -->
+
+	<h3>Text Settings</h3>
+	<div id="textBlocks">
+		<div class="textBlockInput">
+			Text: <input type="text" class="textInput" size="50"><br>
+			Text Color: <input type="color" class="textColorInput"><br>
+			Text Font:
+			<select class="textFontInput">
+				<option>Arial</option>
+				<option>Times New Roman</option>
+				<option>Sans-Serif</option>
+				<option>Serif</option>
+				<option>Monospace</option>
+			</select><br>
+			Text Size: <input type="number" class="textSizeInput" min="1" max="240" value="12"><br>
+			Text Shadow Color:
+			<input type="checkbox" class="textShadowInput" onchange="changeShadowDisabled(0)">
+			<input type="color" class="shadowColorInput"><br>
+			Text Style:
+			<select class="textStyleInput">
+				<option>Normal</option>
+				<option>Bold</option>
+				<option>Italic</option>
+				<option>Bold Italic</option>
+			</select><br>
+			Text X Offset: <input type="number" class="textXInput" min="0" max="4096" value="0"><br>
+			Text Y Offset: <input type="number" class="textYInput" min="0" max="4096" value="0">
+		</div>
+	</div>
+	<button onclick="addTextBlock()">Add text block</button>
+	<button onclick="deleteTextBlock()">Delete text block</button>
+
+	<h3>General Settings</h3>
+	Delay: <input type="number" id="delayInput" min="17" max="10000" value="500"><br>
+	Direction (to scroll to):
+	<select id="directionInput" onchange="changeDirectionDisabled(this.value != 'Specify degrees')">
+		<option value="n">Top</option>
+		<option value="ne">Top-right</option>
+		<option value="e">Right</option>
+		<option value="se">Bottom-right</option>
+		<option value="s">Bottom</option>
+		<option value="sw">Bottom-left</option>
+		<option value="w">Left</option>
+		<option value="nw">Top-left</option>
+		<option>Specify degrees</option>
+	</select>
+	<input type="number" id="degreesInput" min="0" max="359" value="45"><br>
+	Frames: <input type="number" id="frameInput" min="2" max="100" value="10"><br>
+	Image scale: <input type="number" id="scaleInput" min="0.05" max="10" step="0.05" value="1"><br>
+	Image size:
+	<input type="radio" name="imageSize" value="default" onchange="changeImageSizeDisabled(true)" checked>Default
+	<input type="radio" name="imageSize" value="specify" onchange="changeImageSizeDisabled(false)">Specify:
+	Width - <input type="number" id="widthInput" min="32" max="4096" value="512">
+	Height - <input type="number" id="heightInput" min="32" max="4096" value="512">
+	<br>
+	Tile move per frame:
+	<input type="radio" name="tileMove" value="default" onchange="changeTileMoveDisabled(true)" checked>Default
+	<input type="radio" name="tileMove" value="specify" onchange="changeTileMoveDisabled(false)">Specify:
+	<input type="number" id="tileMoveInput" min="2" max="500" value="10">
+
+	<script src="index.js"></script>
+</body>
+
+</html>
